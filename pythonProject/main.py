@@ -2,6 +2,7 @@ ids = [1, 2]
 nome = ['admim', 'usuario']
 senha = ['admim', 'usuario']
 
+
 def menu():
     print('***** Menu do Sistema ***** \n')
     print('    1  Criar usuário')
@@ -9,7 +10,7 @@ def menu():
     print('    3  Atualizar usuário')
     print('    4  Deletar usuário')
     type = int(input('\nSelecione: '))
-    while type >= 1 and type <= 4:
+    while 1 <= type <= 4:
         if type == 1:
             create()
 
@@ -23,6 +24,7 @@ def menu():
             delete()
 
         break
+
 
 def create():
     print('\nCriar usuario!')
@@ -67,7 +69,7 @@ def read():
     elif type == 2:
         menu()
     else:
-        print('\nNumero nao identificado voltando ao menu!')
+        print('\nID nao identificado voltando ao menu!')
         menu()
 
 
@@ -77,15 +79,12 @@ def update():
     id = int(input('\nDigite o ID do usuário que deseja atualizar: '))
     if id in ids:
         index = ids.index(id)
-        id = int(input('    Insira o id: '))
         nomes = input('    Insira o nome: ')
         senhas = input('    Insira a senha: ')
-        ids.pop(index)
         nome.pop(index)
         senha.pop(index)
-        ids.append(id)
-        nome.append(nomes)
-        senha.append(senhas)
+        nome.insert(id - 1, nomes)
+        senha.insert(id - 1, senhas)
     print('Usuario alterado!')
     print('\n1    Continuar alterando')
     print('2    Sair para o menu')
@@ -95,9 +94,10 @@ def update():
     elif type == 2:
         menu()
     else:
-        print('\nNumero nao identificado voltando ao menu!')
+        print('\nID nao identificado voltando ao menu!')
         menu()
     menu()
+
 
 def delete():
     print('\nUsuarios cadastrados:\n')
@@ -106,7 +106,7 @@ def delete():
     if id in ids:
         index = ids.index(id)
         print('\n    ID: ', ids[index], '\n    Nome: ', nome[index], '\n    Senha: ', senha[index])
-        type = int(input('\nDeseja mesmo excluir este usuario? \n1    Sim\n2    Nao'))
+        type = int(input('\nDeseja mesmo excluir este usuario? \n1    Sim\n2    Nao\nSelecione: '))
         if type == 1:
             ids.pop(index)
             nome.pop(index)
@@ -116,6 +116,9 @@ def delete():
             delete()
         else:
             print('Nao encontrado')
+    else:
+        print('\nID nao identificado voltando ao menu!')
+        menu()
     print('Deletado com sucesso!')
     print('\n1    Continuar deletando')
     print('2    Sair para o menu')
@@ -127,5 +130,6 @@ def delete():
     else:
         print('Numero nao identificado voltando ao menu!')
         menu()
+
 
 menu()
