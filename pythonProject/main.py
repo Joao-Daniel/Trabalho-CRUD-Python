@@ -23,15 +23,17 @@ def menu():
         elif type == 4:
             delete()
 
-        break
+    else:
+        print('Numero nao identificado voltando ao menu!')
+        menu()
 
 
 def create():
     print('\nCriar usuario!')
     id = int(input('    Insira o ID:'))
     if id in ids:
-        print('Id ja existente!')
-        create()
+        print('ID ja existente voltando ao menu!')
+        menu()
     else:
         nomes = input('    Insira o nome: ')
         senhas = input('    Insira a senha: ')
@@ -60,6 +62,9 @@ def read():
         print('    ID do usuário:', ids[index])
         print('    Nome do usuário:', nome[index])
         print('    Senha do usuário:', senha[index])
+    else:
+        print('ID nao identificado voltando ao menu!')
+        menu()
     print('Usuario listado!')
     print('\n1    Continuar listando')
     print('2    sair para o menu')
@@ -69,7 +74,7 @@ def read():
     elif type == 2:
         menu()
     else:
-        print('\nID nao identificado voltando ao menu!')
+        print('\nNumero nao identificado voltando ao menu!')
         menu()
 
 
@@ -85,18 +90,21 @@ def update():
         senha.pop(index)
         nome.insert(id - 1, nomes)
         senha.insert(id - 1, senhas)
-    print('Usuario alterado!')
-    print('\n1    Continuar alterando')
-    print('2    Sair para o menu')
-    type = int(input('\nSelecione:'))
-    if type == 1:
-        update()
-    elif type == 2:
+        print('Usuario alterado com sucesso!')
+        print('\n1    Continuar alterando')
+        print('2    Sair para o menu')
+        type = int(input('\nSelecione:'))
+        if type == 1:
+            update()
+        elif type == 2:
+            menu()
+        else:
+            print('\nNumero nao identificado voltando ao menu!')
+            menu()
         menu()
     else:
-        print('\nID nao identificado voltando ao menu!')
+        print('ID nao identificado voltando ao menu!')
         menu()
-    menu()
 
 
 def delete():
@@ -111,25 +119,34 @@ def delete():
             ids.pop(index)
             nome.pop(index)
             senha.pop(index)
+            print('Deletado com sucesso!')
+            print('\n1    Continuar deletando')
+            print('2    Sair para o menu')
+            type = int(input('Selecione: '))
+            if type == 1:
+                delete()
+            elif type == 2:
+                menu()
+            else:
+                print('Numero nao identificado voltando ao menu!')
+                menu()
         elif type == 2:
-            print('Operacao cancelada')
-            delete()
+            print('Operacao cancelada!')
+            print('\n1    Continuar deletando')
+            print('2    Sair para o menu')
+            type = int(input('Selecione: '))
+            if type == 1:
+                delete()
+            elif type == 2:
+                menu()
+            else:
+                print('Numero nao identificado voltando ao menu!')
+                menu()
         else:
-            print('Nao encontrado')
+            print('Numero nao identificado voltando ao menu!')
+            menu()
     else:
         print('\nID nao identificado voltando ao menu!')
         menu()
-    print('Deletado com sucesso!')
-    print('\n1    Continuar deletando')
-    print('2    Sair para o menu')
-    type = int(input('Selecione: '))
-    if type == 1:
-        delete()
-    elif type == 2:
-        menu()
-    else:
-        print('Numero nao identificado voltando ao menu!')
-        menu()
-
 
 menu()
